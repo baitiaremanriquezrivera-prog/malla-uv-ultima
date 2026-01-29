@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Malla interactiva – Derecho UV</title>
+  <style>
+    :root{
+      --moss: #4f634e;          /* verde musgo (no vivo) */
+      --moss-2:#3f5240;
+      --sage:#a8b8a2;           /* verde claro apagado */
+      --sage-2:#cfd9c9;
+      --paper:#fbfcfb;
+      --ink:#152016;
+      --muted:#4a5a4b;
+      --card:#ffffff;
+      --border:#e3e8e1;
+      --shadow: 0 10px 30px rgba(20,30,20,.06);
+      --radius: 16px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      background: linear-gradient(180deg, var(--sage-2), var(--paper) 40%);
+      color:var(--ink);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(10px);
+      background: rgba(251,252,251,.75);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wrap{
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 14px 14px 18px;
+    }
+
+    .top{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:space-between;
+    }
+
+    h1{
+      font-size: 18px;
+      margin:0;
+      letter-spacing: .2px;
+      color: var(--moss-2);
+    }
+
+    .sub{
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    input, select, button{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.85);
+      padding:10px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+    }
+    input::placeholder{ color:#7b887b; }
+
+    button{
+      cursor:pointer;
+      background: linear-gradient(180deg, #ffffff, #f3f6f2);
+    }
+    button:hover{ border-color:#d2dbcf; }
+
+    .layout{
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap: 14px;
+      padding-top: 14px;
+      align-items:start;
+    }
+
+    .board{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.7);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:auto;
+    }
+
+    .grid{
+      min-width: 980px; /* permite scroll horizontal en móvil */
+      display:grid;
+      grid-template-columns: repeat(10, minmax(200px, 1fr));
+      gap: 10px;
+      padding: 12px;
+    }
+
+    .colhead{
+      position: sticky;
+      top: 0;
+      background: rgba(251,252,251,.9);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      font-weight: 650;
+      color: var(--moss-2);
+      text-align:center;
+      box-shadow: 0 6px 18px rgba(20,30,20,.05);
+    }
+
+    .course{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 10px 8px;
+      background: var(--card);
+      box-shadow: 0 8px 22px rgba(20,30,20,.05);
+      transition: transform .12s ease, border-color .12s ease;
+      cursor:pointer;
+    }
+    .course:hover{ transform: translateY(-1px); border-color:#d2dbcf; }
+    .course.selected{ border-color: var(--moss); box-shadow: 0 10px 30px rgba(79,99,78,.18); }
+
+    .title{ font-weight: 700; line-height: 1.15; }
+    .meta{ display:flex; gap:6px; flex-wrap:wrap; margin-top: 8px; }
+    .pill{
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #f2f5f1;
+      border: 1px solid #e6ece4;
+      color: #2a3a2b;
+      white-space:nowrap;
+    }
+
+    .status{
+      margin-top: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 8px;
+    }
+    .status select{ padding: 8px 10px; font-size: 13px; }
+
+    /* estados */
+    .s-pendiente{ border-left: 6px solid #d7ded3; }
+    .s-en-curso{ border-left: 6px solid var(--sage); }
+    .s-aprobado{ border-left: 6px solid var(--moss); background: linear-gradient(180deg, #ffffff, #f4f7f3); }
+
+    aside{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.78);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 12px;
+      position: sticky;
+      top: 84px;
+    }
+
+    .cardtitle{ margin: 2px 0 10px; font-size: 16px; color: var(--moss-2); }
+    .muted{ color: var(--muted); font-size: 13px; }
+
+    .progress{
+      border:1px solid var(--border);
+      background: #f3f6f2;
+      border-radius: 999px;
+      overflow:hidden;
+      height: 12px;
+      margin-top: 8px;
+    }
+    .progress > div{
+      height:100%;
+      background: linear-gradient(90deg, var(--moss), var(--sage));
+      width: 0%;
+      transition: width .25s ease;
+    }
+
+    .reqs{ margin-top: 10px; }
+    .reqs .pill{ cursor:pointer; }
+    .reqs .pill:hover{ border-color:#cfd9c9; }
+
+    .footerhint{
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #dde5da;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+      aside{ position: static; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>Malla interactiva – Derecho (Universidad de Valparaíso)</h1>
+        <div class="sub">Clic en un ramo para ver requisitos. Marca tu estado y se guarda en tu navegador.</div>
+      </div>
+
+      <div class="controls">
+        <input id="search" placeholder="Buscar ramo o código…" />
+        <select id="filter">
+          <option value="todos">Todos</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="en-curso">En curso</option>
+          <option value="aprobado">Aprobado</option>
+        </select>
+        <button id="reset">Reset estados</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="layout">
+    <div class="board">
+      <div class="grid" id="grid">
+        <!-- se renderiza por JS -->
+      </div>
+    </div>
+
+    <aside>
+      <div class="cardtitle">Progreso</div>
+      <div class="muted" id="progressText">—</div>
+      <div class="progress"><div id="bar"></div></div>
+
+      <div style="height:10px"></div>
+
+      <div class="cardtitle">Detalles</div>
+      <div id="details" class="muted">Selecciona un ramo.</div>
+
+      <div class="footerhint">
+        Tip: si filtras por “Aprobado”, verás cuántos créditos llevas. Puedes exportar/compartir el repo con GitHub Pages.
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = "malla_uv_derecho_status_v1";
+
+  const state = {
+    courses: [],
+    byId: new Map(),
+    status: {},    // {id: 'pendiente'|'en-curso'|'aprobado'}
+    selected: null,
+    query: "",
+    filter: "todos"
+  };
+
+  function norm(s){ return (s || "").toString().toLowerCase(); }
+
+  function loadStatus(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      state.status = raw ? JSON.parse(raw) : {};
+    }catch{ state.status = {}; }
+  }
+
+  function saveStatus(){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state.status));
+  }
+
+  function getCourseStatus(id){
+    return state.status[id] || "pendiente";
+  }
+
+  function setCourseStatus(id, st){
+    state.status[id] = st;
+    saveStatus();
+    render();
+  }
+
+  function courseVisible(c){
+    const q = norm(state.query);
+    if (q){
+      if (!norm(c.name).includes(q) && !norm(c.id).includes(q)) return false;
+    }
+    const f = state.filter;
+    if (f !== "todos" && getCourseStatus(c.id) !== f) return false;
+    return true;
+  }
+
+  function escapeHtml(s=""){
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function renderDetails(course){
+    const el = document.getElementById("details");
+    if(!course){
+      el.innerHTML = "Selecciona un ramo.";
+      return;
+    }
+    const prereq = (course.prereq || []).map(id => state.byId.get(id)?.name ? `${id} – ${state.byId.get(id).name}` : id);
+
+    const prereqHtml = prereq.length
+      ? prereq.map((txt, i) => {
+          const id = (course.prereq || [])[i];
+          return `<span class="pill" data-jump="${escapeHtml(id)}" title="Ir al ramo">${escapeHtml(txt)}</span>`;
+        }).join(" ")
+      : `<span class="pill">Ninguno</span>`;
+
+    el.innerHTML = `
+      <div><b>${escapeHtml(course.id)}</b> — ${escapeHtml(course.name)}</div>
+      <div class="meta">
+        <span class="pill">${escapeHtml(String(course.credits))} créditos</span>
+        <span class="pill">Semestre ${escapeHtml(String(course.term))}</span>
+        ${course.area ? `<span class="pill">${escapeHtml(course.area)}</span>` : ""}
+        <span class="pill">Estado: ${escapeHtml(getCourseStatus(course.id))}</span>
+      </div>
+      <div class="reqs">
+        <div style="margin:10px 0 6px;"><b>Requisitos</b></div>
+        ${prereqHtml}
+      </div>
+    `;
+
+    el.querySelectorAll("[data-jump]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-jump");
+        selectCourse(id);
+        // scroll suave al curso
+        const node = document.querySelector(`[data-course='${CSS.escape(id)}']`);
+        node?.scrollIntoView({behavior:"smooth", block:"center", inline:"center"});
+      });
+    });
+  }
+
+  function computeProgress(){
+    const total = state.courses.reduce((a,c) => a + (Number(c.credits)||0), 0);
+    const approved = state.courses
+      .filter(c => getCourseStatus(c.id) === "aprobado")
+      .reduce((a,c) => a + (Number(c.credits)||0), 0);
+
+    return {total, approved, pct: total ? (approved/total)*100 : 0};
+  }
+
+  function selectCourse(id){
+    state.selected = id;
+    render();
+  }
+
+  function render(){
+    const grid = document.getElementById("grid");
+
+    // encabezados por semestre
+    const cols = 10;
+    const visible = state.courses.filter(courseVisible);
+
+    // agrupar por semestre
+    const byTerm = new Map();
+    for(const c of visible){
+      if(!byTerm.has(c.term)) byTerm.set(c.term, []);
+      byTerm.get(c.term).push(c);
+    }
+    for(const [t, arr] of byTerm.entries()){
+      arr.sort((a,b) => (a.id > b.id ? 1 : -1));
+    }
+
+    // arma contenido: fila de headers + columnas con listas
+    // Usamos grid: 10 columnas; para meter headers, los renderizamos como los primeros 10 items.
+    const parts = [];
+
+    for(let t=1; t<=cols; t++){
+      parts.push(`<div class="colhead">Semestre ${t}</div>`);
+    }
+
+    for(let t=1; t<=cols; t++){
+      const list = byTerm.get(t) || [];
+      const cards = list.map(c => {
+        const st = getCourseStatus(c.id);
+        const selected = (state.selected === c.id) ? "selected" : "";
+        const prereqCount = (c.prereq || []).length;
+        return `
+          <div class="course s-${st} ${selected}" data-course="${escapeHtml(c.id)}" role="button" aria-label="Abrir ${escapeHtml(c.name)}">
+            <div class="title">${escapeHtml(c.name)}</div>
+            <div class="meta">
+              <span class="pill">${escapeHtml(c.id)}</span>
+              <span class="pill">${escapeHtml(String(c.credits))} cr</span>
+              ${c.area ? `<span class="pill">${escapeHtml(c.area)}</span>` : ""}
+              <span class="pill">Req: ${prereqCount}</span>
+            </div>
+            <div class="status">
+              <span class="muted">Estado</span>
+              <select data-status="${escapeHtml(c.id)}" aria-label="Estado de ${escapeHtml(c.name)}">
+                <option value="pendiente" ${st==="pendiente"?"selected":""}>pendiente</option>
+                <option value="en-curso" ${st==="en-curso"?"selected":""}>en-curso</option>
+                <option value="aprobado" ${st==="aprobado"?"selected":""}>aprobado</option>
+              </select>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // envolvemos columna en un div (ocupa una celda) para que quede ordenado bajo el header
+      parts.push(`<div style="display:flex; flex-direction:column; gap:10px;">${cards || `<div class="muted" style="padding:8px 4px;">—</div>`}</div>`);
+    }
+
+    grid.innerHTML = parts.join("");
+
+    // listeners: click para seleccionar
+    grid.querySelectorAll(".course").forEach(card => {
+      card.addEventListener("click", (e) => {
+        // si tocó el select, no tratamos como click general
+        if (e.target && e.target.matches("select")) return;
+        const id = card.getAttribute("data-course");
+        selectCourse(id);
+      });
+    });
+
+    // listeners: cambio de estado
+    grid.querySelectorAll("select[data-status]").forEach(sel => {
+      sel.addEventListener("change", () => {
+        setCourseStatus(sel.getAttribute("data-status"), sel.value);
+      });
+    });
+
+    // detalles
+    renderDetails(state.selected ? state.byId.get(state.selected) : null);
+
+    // progreso
+    const p = computeProgress();
+    const text = `${p.approved} / ${p.total} créditos aprobados (${Math.round(p.pct)}%)`;
+    document.getElementById("progressText").textContent = text;
+    document.getElementById("bar").style.width = `${p.pct}%`;
+  }
+
+  async function init(){
+    loadStatus();
+
+    const res = await fetch("./courses.json");
+    state.courses = await res.json();
+
+    state.byId = new Map(state.courses.map(c => [c.id, c]));
+
+    // default: si no hay status guardado, deja todo pendiente
+    document.getElementById("search").addEventListener("input", (e) => {
+      state.query = e.target.value;
+      render();
+    });
+
+    document.getElementById("filter").addEventListener("change", (e) => {
+      state.filter = e.target.value;
+      render();
+    });
+
+    document.getElementById("reset").addEventListener("click", () => {
+      state.status = {};
+      saveStatus();
+      state.selected = null;
+      render();
+    });
+
+    render();
+  }
+
+  init().catch(err => {
+    console.error(err);
+    document.getElementById("grid").innerHTML = `<div class="muted">Error cargando la malla: ${escapeHtml(String(err))}</div>`;
+  });
+</script>
+
+</body>
+</html>

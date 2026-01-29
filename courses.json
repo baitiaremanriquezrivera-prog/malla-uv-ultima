@@ -1,0 +1,595 @@
+[
+  {
+    "id": "DERE111",
+    "name": "Derecho Romano",
+    "credits": 4,
+    "term": 1,
+    "area": "AFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE112",
+    "name": "Economía",
+    "credits": 5,
+    "term": 1,
+    "area": "AFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE113",
+    "name": "Introd. al Derecho: Órdenes Normativos y Fuentes del Derecho",
+    "credits": 6,
+    "term": 1,
+    "area": "AFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE114",
+    "name": "Teoría Política",
+    "credits": 5,
+    "term": 1,
+    "area": "AFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE115",
+    "name": "Taller de Comunicación y Competencia de Autorregulación",
+    "credits": 4,
+    "term": 1,
+    "area": "TFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE116",
+    "name": "Introducción a la Filosofía Jurídica y Moral",
+    "credits": 4,
+    "term": 1,
+    "area": "AFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE117",
+    "name": "Taller de Inglés I",
+    "credits": 2,
+    "term": 1,
+    "area": "TFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE121",
+    "name": "Historia del Derecho",
+    "credits": 4,
+    "term": 2,
+    "area": "AFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE122",
+    "name": "Derecho Económico: Regulación Económica",
+    "credits": 5,
+    "term": 2,
+    "area": "AFPT",
+    "prereq": [
+      "DERE112"
+    ]
+  },
+  {
+    "id": "DERE123",
+    "name": "Introd. al Derecho: Ordenamiento Jurídico e Interpretación",
+    "credits": 6,
+    "term": 2,
+    "area": "AFB",
+    "prereq": [
+      "DERE113"
+    ]
+  },
+  {
+    "id": "DERE124",
+    "name": "Historia Institucional de Chile",
+    "credits": 4,
+    "term": 2,
+    "area": "AFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE125",
+    "name": "Lectura Crítica y Autorregulación",
+    "credits": 5,
+    "term": 2,
+    "area": "AFB",
+    "prereq": [
+      "DERE115"
+    ]
+  },
+  {
+    "id": "DERE126",
+    "name": "Taller de Derecho y Tecnología",
+    "credits": 2,
+    "term": 2,
+    "area": "TFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE127",
+    "name": "Taller de Inglés II",
+    "credits": 2,
+    "term": 2,
+    "area": "TFB",
+    "prereq": [
+      "DERE117"
+    ]
+  },
+  {
+    "id": "DERE128",
+    "name": "Taller de Integración I",
+    "credits": 2,
+    "term": 2,
+    "area": "TFPP",
+    "prereq": []
+  },
+  {
+    "id": "DERE211",
+    "name": "Derecho Civil: Teoría del Acto Jurídico",
+    "credits": 6,
+    "term": 3,
+    "area": "AFPT",
+    "prereq": [
+      "DERE123"
+    ]
+  },
+  {
+    "id": "DERE212",
+    "name": "Derecho Económico: Orden Público Económico",
+    "credits": 6,
+    "term": 3,
+    "area": "AFPT",
+    "prereq": [
+      "DERE112"
+    ]
+  },
+  {
+    "id": "DERE213",
+    "name": "Derecho Procesal Civil: Introducción al Derecho Procesal",
+    "credits": 6,
+    "term": 3,
+    "area": "AFPT",
+    "prereq": [
+      "DERE123"
+    ]
+  },
+  {
+    "id": "DERE214",
+    "name": "Derecho Constitucional: Principios Const. Y Derechos Fundam.",
+    "credits": 6,
+    "term": 3,
+    "area": "AFPT",
+    "prereq": [
+      "DERE113"
+    ]
+  },
+  {
+    "id": "DERE215",
+    "name": "Derecho Internacional Público: La Sociedad inter. Y su ord. Jurídico",
+    "credits": 4,
+    "term": 3,
+    "area": "AFPT",
+    "prereq": [
+      "DERE113"
+    ]
+  },
+  {
+    "id": "DERE216",
+    "name": "Taller de Inglés III",
+    "credits": 2,
+    "term": 3,
+    "area": "TFB",
+    "prereq": [
+      "DERE127"
+    ]
+  },
+  {
+    "id": "DERE221",
+    "name": "Derecho Civil: Bienes",
+    "credits": 6,
+    "term": 4,
+    "area": "AFPT",
+    "prereq": [
+      "DERE211"
+    ]
+  },
+  {
+    "id": "DERE222",
+    "name": "Resolución altermativa de Conflictos",
+    "credits": 4,
+    "term": 4,
+    "area": "AFPP",
+    "prereq": [
+      "DERE123"
+    ]
+  },
+  {
+    "id": "DERE223",
+    "name": "Derecho Procesal Civil: Instituciones Básicas del Procedimiento",
+    "credits": 5,
+    "term": 4,
+    "area": "AFPT",
+    "prereq": [
+      "DERE213"
+    ]
+  },
+  {
+    "id": "DERE224",
+    "name": "Derecho Constitucional Orgánico",
+    "credits": 4,
+    "term": 4,
+    "area": "AFPT",
+    "prereq": [
+      "DERE113",
+      "DERE114"
+    ]
+  },
+  {
+    "id": "DERE225",
+    "name": "Derecho Penal: Introd. al Derecho Penal y a la Teoría del Delito",
+    "credits": 5,
+    "term": 4,
+    "area": "AFPT",
+    "prereq": [
+      "DERE123",
+      "DERE214"
+    ]
+  },
+  {
+    "id": "DERE226",
+    "name": "Derecho Internacional Público: Derecho de la Cooperación Inter.",
+    "credits": 4,
+    "term": 4,
+    "area": "AFPT",
+    "prereq": [
+      "DERE113"
+    ]
+  },
+  {
+    "id": "DERE227",
+    "name": "Taller de Integración II",
+    "credits": 2,
+    "term": 4,
+    "area": "TFPP",
+    "prereq": [
+      "DERE128"
+    ]
+  },
+  {
+    "id": "DERE311",
+    "name": "Derecho Civil: Obligaciones",
+    "credits": 6,
+    "term": 5,
+    "area": "AFPT",
+    "prereq": [
+      "DERE211"
+    ]
+  },
+  {
+    "id": "DERE312",
+    "name": "Derecho Individual del Trabajo",
+    "credits": 5,
+    "term": 5,
+    "area": "AFPT",
+    "prereq": [
+      "DERE211"
+    ]
+  },
+  {
+    "id": "DERE313",
+    "name": "Derecho Procesal Civil: Procedimientos Declarativos",
+    "credits": 6,
+    "term": 5,
+    "area": "AFPT",
+    "prereq": [
+      "DERE223"
+    ]
+  },
+  {
+    "id": "DERE314",
+    "name": "Derecho Administrativo: Organización y Activ. Administrativa",
+    "credits": 5,
+    "term": 5,
+    "area": "AFPT",
+    "prereq": [
+      "DERE224"
+    ]
+  },
+  {
+    "id": "DERE315",
+    "name": "Derecho Penal: Teoría del Delito y de la Pena",
+    "credits": 6,
+    "term": 5,
+    "area": "AFPT",
+    "prereq": [
+      "DERE225"
+    ]
+  },
+  {
+    "id": "DERE316",
+    "name": "Taller de Técnicas en Elaboración de Normas",
+    "credits": 2,
+    "term": 5,
+    "area": "TFPP",
+    "prereq": [
+      "DERE224"
+    ]
+  },
+  {
+    "id": "DERE321",
+    "name": "Derecho Civil: Fuentes de las Obligaciones",
+    "credits": 5,
+    "term": 6,
+    "area": "AFPT",
+    "prereq": [
+      "DERE211"
+    ]
+  },
+  {
+    "id": "DERE322",
+    "name": "Derecho Colectivo del Trabajo",
+    "credits": 5,
+    "term": 6,
+    "area": "AFPT",
+    "prereq": [
+      "DERE211"
+    ]
+  },
+  {
+    "id": "DERE323",
+    "name": "Derecho Procesal Civil: Recursos y Ejecución",
+    "credits": 5,
+    "term": 6,
+    "area": "AFPT",
+    "prereq": [
+      "DERE223"
+    ]
+  },
+  {
+    "id": "DERE324",
+    "name": "Derecho Admin.: Control y Responsabil. de la Administración",
+    "credits": 5,
+    "term": 6,
+    "area": "AFPT",
+    "prereq": [
+      "DERE224"
+    ]
+  },
+  {
+    "id": "DERE325",
+    "name": "Derecho Penal: Delitos Contra Bienes Jurídicos del Individuo",
+    "credits": 4,
+    "term": 6,
+    "area": "AFPT",
+    "prereq": [
+      "DERE315"
+    ]
+  },
+  {
+    "id": "DERE326",
+    "name": "Sociología Jurídica",
+    "credits": 4,
+    "term": 6,
+    "area": "AFB",
+    "prereq": [
+      "DERE113",
+      "DERE114"
+    ]
+  },
+  {
+    "id": "DERE327",
+    "name": "Taller de Integración Examen",
+    "credits": 2,
+    "term": 6,
+    "area": "TFPP",
+    "prereq": [
+      "DERE227"
+    ]
+  },
+  {
+    "id": "DERE411",
+    "name": "Derecho Civil: Derecho de Familia",
+    "credits": 6,
+    "term": 7,
+    "area": "AFPT",
+    "prereq": []
+  },
+  {
+    "id": "DERE412",
+    "name": "Derecho Comercial: Actos Mercantiles y org. Jurídica de la empresa",
+    "credits": 5,
+    "term": 7,
+    "area": "AFPT",
+    "prereq": []
+  },
+  {
+    "id": "DERE413",
+    "name": "Derecho Procesal Penal",
+    "credits": 5,
+    "term": 7,
+    "area": "AFPT",
+    "prereq": []
+  },
+  {
+    "id": "DERE414",
+    "name": "Derecho Tributario: Los Tributos",
+    "credits": 5,
+    "term": 7,
+    "area": "AFPT",
+    "prereq": []
+  },
+  {
+    "id": "DERE415",
+    "name": "Derecho Penal: Delitos Contra Bienes Jurídicos de la Soc. y del Estado",
+    "credits": 5,
+    "term": 7,
+    "area": "AFPT",
+    "prereq": []
+  },
+  {
+    "id": "DERE416",
+    "name": "Curso Electivo 1",
+    "credits": 4,
+    "term": 7,
+    "area": "AE",
+    "prereq": []
+  },
+  {
+    "id": "DERE421",
+    "name": "Derecho Civil: Derecho Sucesorio",
+    "credits": 4,
+    "term": 8,
+    "area": "AFPT",
+    "prereq": []
+  },
+  {
+    "id": "DERE422",
+    "name": "Derecho Comercial: Contratos Mercantiles y Títulos de Crédito",
+    "credits": 5,
+    "term": 8,
+    "area": "AFPT",
+    "prereq": []
+  },
+  {
+    "id": "DERE423",
+    "name": "Litigación Oral",
+    "credits": 4,
+    "term": 8,
+    "area": "AFPP",
+    "prereq": []
+  },
+  {
+    "id": "DERE424",
+    "name": "Derecho Tributario: Impuestos a la Renta y a las ventas y serv.",
+    "credits": 5,
+    "term": 8,
+    "area": "AFPT",
+    "prereq": []
+  },
+  {
+    "id": "DERE425",
+    "name": "Curso Electivo 2",
+    "credits": 4,
+    "term": 8,
+    "area": "AE",
+    "prereq": []
+  },
+  {
+    "id": "DERE426",
+    "name": "Curso Electivo 3",
+    "credits": 4,
+    "term": 8,
+    "area": "AE",
+    "prereq": []
+  },
+  {
+    "id": "DERE427",
+    "name": "Taller de Integración III",
+    "credits": 2,
+    "term": 8,
+    "area": "TFPP",
+    "prereq": []
+  },
+  {
+    "id": "DERE511",
+    "name": "Curso Electivo 4",
+    "credits": 4,
+    "term": 9,
+    "area": "AE",
+    "prereq": [
+      "DERE416",
+      "DERE425",
+      "DERE426"
+    ]
+  },
+  {
+    "id": "DERE512",
+    "name": "Curso Electivo 5",
+    "credits": 4,
+    "term": 9,
+    "area": "AE",
+    "prereq": [
+      "DERE416",
+      "DERE425",
+      "DERE426"
+    ]
+  },
+  {
+    "id": "DERE513",
+    "name": "Clínica Jurídica",
+    "credits": 9,
+    "term": 9,
+    "area": "AFPP",
+    "prereq": [
+      "DERE411",
+      "DERE423"
+    ]
+  },
+  {
+    "id": "DERE514",
+    "name": "Seminario de Licenciatura",
+    "credits": 2,
+    "term": 9,
+    "area": "STC",
+    "prereq": [
+      "DERE411",
+      "DERE413",
+      "DERE415"
+    ]
+  },
+  {
+    "id": "DERE515",
+    "name": "Curso Electivo 6",
+    "credits": 4,
+    "term": 9,
+    "area": "AE",
+    "prereq": [
+      "DERE416",
+      "DERE425",
+      "DERE426"
+    ]
+  },
+  {
+    "id": "DERE516",
+    "name": "Filosofía del Derecho",
+    "credits": 5,
+    "term": 9,
+    "area": "AFB",
+    "prereq": []
+  },
+  {
+    "id": "DERE521",
+    "name": "Seminario Integración",
+    "credits": 15,
+    "term": 10,
+    "area": "STC",
+    "prereq": [
+      "DERE413",
+      "DERE421"
+    ]
+  },
+  {
+    "id": "DERE522",
+    "name": "Taller de Inserción Profesional",
+    "credits": 2,
+    "term": 10,
+    "area": "TFPP",
+    "prereq": [
+      "DERE423"
+    ]
+  },
+  {
+    "id": "DERE523",
+    "name": "Seminario de Licenciatura II",
+    "credits": 4,
+    "term": 10,
+    "area": "STC",
+    "prereq": [
+      "DERE514"
+    ]
+  }
+]
